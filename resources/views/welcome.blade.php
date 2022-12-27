@@ -4,10 +4,16 @@
 	<div class="card mx-5 shadow">
 		<div class="card-body">
 			<div class="input-group rounded">
-				<input type="text" class="form-control">
-				<input type="button" class="input-group-text btn fw-bold btn-primary" id="add-todo" value="Add Todo" >
-				<input type="button" class="input-group-text btn fw-bold btn-danger" id="add-todo" value="Remove All" >
-				<input type="button" class="input-group-text btn fw-bold btn-success" id="add-todo" value="Remove completed tasks" >
+				<input type="text" class="form-control" placeholder="Write a new Task">
+				<button type="button" class="input-group-text btn btn-primary" title="Add Task" id="add-todo">
+					<i class="bi bi-plus-lg fs-5"></i>
+				</button>
+				<button type="button" class="input-group-text btn btn-danger" title="Remove All" id="add-todo">
+					<i class="bi bi-trash-fill fs-5"></i>					
+				</button>
+				<button type="button" class="input-group-text btn btn-success" title="Remove completed tasks" id="add-todo">
+					<i class="bi bi-list-check fs-5"></i>
+				</button>
 			</div>
 		</div>
 	</div>
