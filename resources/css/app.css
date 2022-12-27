@@ -1,0 +1,33 @@
+.form_input2 {
+	outline: none;
+	border: 1px solid transparent;
+	background-color: rgba(255, 255, 255, 0.7);
+	border-radius: 4px;
+	font-size: 1rem;
+	position: relative;
+	padding: 5px 8px 5px 16px;
+	transition: all 0.3s ease;
+}
+
+.form_label2 {
+	position: absolute;
+	left: 20px;
+	top: 80%;
+	transform: translateY(-100%);
+	font-size: 1rem;
+	transition: all 0.3s ease;
+	color: var(--dark2) !important;
+	pointer-events: none;
+}
+
+.form_input2:focus+.form_label2,
+.form_input2:not(:placeholder-shown)+.form_label2 {
+	top: 0;
+	left: 0;
+	color: var(--white) !important;
+	padding: 0 20px;
+}
+
+.form_input2:focus+.form_label2 {
+	color: var(--white) !important;
+}
