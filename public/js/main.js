@@ -1,7 +1,25 @@
 window.addEventListener('load', () => {
-	var add_todo = document.getElementById('add-todo');
-	
-	add_todo.onclick = function () {
-		
+	let add_todo = document.getElementById('add-todo')
+	let task = document.getElementById("task")
+
+	add_todo.onclick = function (e) {
+		e.preventDefault()
+		console.log(task.value)
 	}
 })
+
+function $ch3ck3d(txt_id, id) {
+	if (document.getElementById(id).value == 0) {
+	  var snd = new Audio("https://actions.google.com/sounds/v1/cartoon/cartoon_boing.ogg");  
+    snd.play();
+		document.getElementById(id).value = 1
+		document.getElementById(txt_id).classList.add("text-decoration-line-through")
+	} else {
+		var snd = new Audio("https://actions.google.com/sounds/v1/cartoon/cartoon_cowbell.ogg");  
+    snd.play();
+		document.getElementById(id).value = 0
+		document.getElementById(txt_id).classList.remove("text-decoration-line-through")
+	}
+	
+	console.log(txt_id, id, document.getElementById(id).value);
+}

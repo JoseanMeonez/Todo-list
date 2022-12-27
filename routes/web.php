@@ -14,5 +14,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get("/", fn() =>
-	view("welcome")
-);
+	view("tasks")
+)->name('home');
