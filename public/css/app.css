@@ -1,0 +1,11 @@
+.btn-orangered {
+	border-color: orangered;
+	background-color: orangered;
+	color: white !important;
+}
+
+.btn-orangered:hover {
+	border-color: orange;
+	background-color: orange;
+	color: white !important;
+}
