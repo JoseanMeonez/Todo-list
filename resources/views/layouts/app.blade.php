@@ -18,13 +18,14 @@
   <!-- Scripts -->
 	@vite(['resources/sass/app.scss', 'resources/js/app.js'])
 	<link rel="stylesheet" href="{{ asset('css/app.css') }}">
+	<script src="{{ asset('js/main.js') }}"></script>
 </head>
 
 <body>
   <div id="app">
-    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm bg-pixel">
       <div class="container">
-        <a class="navbar-brand fw-bold" href="{{ url('/') }}">
+        <a class="navbar-brand fw-bold text-white" href="{{ url('/') }}">
           {{ config('app.name', 'Pixel Todo') }}
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
