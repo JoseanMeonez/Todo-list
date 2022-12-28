@@ -16,3 +16,17 @@ export const add_task = (add_todo, schedule, task) => add_todo.onclick = functio
 		window.location.reload()
 	})
 }
+
+export const remove_completed = (remove_done_t) => remove_done_t.onclick = function () {
+	fetch(`http://127.0.0.1:8000/api/delete-completed`, {
+		method: 'put',
+		headers: {
+			Accept: 'application/json',
+		},
+	})
+	.then(response => response.text())
+	.then(text => {
+		console.log(text)
+		window.location.reload()
+	})
+}

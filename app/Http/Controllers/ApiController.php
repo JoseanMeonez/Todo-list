@@ -59,6 +59,12 @@ class ApiController extends Controller
 		$query = DB::table('todo_list')
 		->where('done', 1)
 		->update(['status' => 0]);
+
+		if ($query == true) {
+			return "Tareas eliminadas exitosamente.";
+		} else {
+			return "Lo sentimos, no se pudo actualizar el estado de la tarea.";
+		}
 	}
 
 	public function Completed_task(int $id, int $done)
