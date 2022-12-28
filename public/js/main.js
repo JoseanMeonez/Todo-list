@@ -9,4 +9,5 @@ window.addEventListener('load', () => {
 
 	fn.add_task(add_todo, schedule, task)
 	fn.remove_completed(remove_done_t)
+	fn.remove_all(remove_all)
 })
