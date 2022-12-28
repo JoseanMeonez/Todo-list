@@ -13,7 +13,7 @@ return new class extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('todo-list', function (Blueprint $table) {
+		Schema::create('todo_list', function (Blueprint $table) {
 			$table->id();
 			$table->string('todo_text', 255);
 			$table->integer('done');
@@ -30,6 +30,6 @@ return new class extends Migration
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('todo-list');
+		Schema::dropIfExists('todo_list');
 	}
 };
