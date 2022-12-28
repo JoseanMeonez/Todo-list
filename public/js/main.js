@@ -1,41 +1,9 @@
+import * as fn from "./functions.js";
+
 window.addEventListener('load', () => {
 	let task = document.getElementById("task")
 	let add_todo = document.getElementById('add-todo')
 	let schedule = document.getElementById('calendar')
 
-	add_todo.onclick = function () {
-		add_todo.setAttribute("disabled", true)
-
-		fetch(`http://127.0.0.1:8000/api/add-new-task/${task.value}/${(schedule.value == '') ? 0 : schedule.value}`, {
-			method: 'post',
-			headers: {
-				task: task.value,
-				scheduled: schedule.value,
-				Accept: 'application/json',
-			},
-		})
-		.then(response => response.text())
-		.then(text => {
-			task.value = ''
-			schedule.value = ''
-			window.location.reload()
-		})
-	}
+	fn.add_task(add_todo, schedule, task)
 })
-
-function $ch3ck3d(txt_id, id) {
-	if (document.getElementById(id).value == 0) {
-	  var snd = new Audio("https://actions.google.com/sounds/v1/cartoon/cartoon_boing.ogg");  
-    snd.play();
-		document.getElementById(id).value = 1
-		document.getElementById(txt_id).classList.add("text-decoration-line-through")
-		document.getElementById(txt_id).classList.add("text-muted")
-	} else {
-		var snd = new Audio("https://actions.google.com/sounds/v1/cartoon/cartoon_cowbell.ogg");  
-    snd.play();
-		document.getElementById(id).value = 0
-		document.getElementById(txt_id).classList.remove("text-decoration-line-through")
-		document.getElementById(txt_id).classList.remove("text-muted")
-	}	
-	console.log(txt_id, id, document.getElementById(id).value);
-}
