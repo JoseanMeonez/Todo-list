@@ -1,6 +1,7 @@
 window.addEventListener('load', () => {
-	let add_todo = document.getElementById('add-todo')
 	let task = document.getElementById("task")
+	let add_todo = document.getElementById('add-todo')
+	let schedule = document.getElementById('calendar')
 
 	fetch('http://127.0.0.1:8000/api/getTasks', {
     method: 'GET',
@@ -14,11 +15,11 @@ window.addEventListener('load', () => {
 	add_todo.onclick = function (e) {
 		e.preventDefault()
 		console.log(task.value)
-		fetch(`http://127.0.0.1:8000/api/task/${task.value}/0`, {
+		fetch(`http://127.0.0.1:8000/api/task/${task.value}/${schedule.value}`, {
 			method: 'POST',
 			headers: {
 				task: task.value,
-				scheduled: 0,
+				scheduled: schedule.value,
 				Accept: 'application/json',
 			},
 		})
