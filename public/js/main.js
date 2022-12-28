@@ -3,20 +3,11 @@ window.addEventListener('load', () => {
 	let add_todo = document.getElementById('add-todo')
 	let schedule = document.getElementById('calendar')
 
-	fetch('http://127.0.0.1:8000/api/getTasks', {
-    method: 'GET',
-    headers: {
-			'Accept': 'application/json',
-    },
-	})
-	.then(response => response.text())
-	.then(text => console.log(JSON.parse(text)))
+	add_todo.onclick = function () {
+		add_todo.setAttribute("disabled", true)
 
-	add_todo.onclick = function (e) {
-		e.preventDefault()
-		console.log(task.value)
-		fetch(`http://127.0.0.1:8000/api/task/${task.value}/${schedule.value}`, {
-			method: 'POST',
+		fetch(`http://127.0.0.1:8000/api/add-new-task/${task.value}/${(schedule.value == '') ? 0 : schedule.value}`, {
+			method: 'post',
 			headers: {
 				task: task.value,
 				scheduled: schedule.value,
@@ -24,7 +15,11 @@ window.addEventListener('load', () => {
 			},
 		})
 		.then(response => response.text())
-		.then(text => console.log(text))
+		.then(text => {
+			task.value = ''
+			schedule.value = ''
+			window.location.reload()
+		})
 	}
 })
 

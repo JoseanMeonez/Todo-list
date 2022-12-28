@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-	<form class="card shadow mb-3 border-0">
+	<form action="{{ route('home') }}" class="card shadow border-0 mb-3">
 		<div class="input-group">
 			<input type="date" class="btn btn-sm btn-outline-primary" id="calendar"/>
 			<input type="text" class="form-control border-1 bg-white" id="task" placeholder="Write a new Task">

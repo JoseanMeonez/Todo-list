@@ -23,16 +23,16 @@
 
 <body>
   <div id="app">
-    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm bg-pixel">
+    <nav class="navbar navbar-expand-md navbar-dark shadow-sm bg-pixel position-sticky fixed-top">
       <div class="container">
-        <a class="navbar-brand fw-bold text-white" href="{{ url('/') }}">
+        <a class="navbar-brand fw-bold" href="{{ url('/') }}">
           {{ config('app.name', 'Pixel Todo') }}
         </a>
       </div>
     </nav>
-
-    <main class="p-5">
-      @yield('content')
+		
+    <main class="p-3">
+			@yield('content')
     </main>
   </div>
 </body>
