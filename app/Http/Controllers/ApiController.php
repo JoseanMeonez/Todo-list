@@ -7,10 +7,11 @@ use Illuminate\Support\Facades\DB;
 
 class ApiController extends Controller
 {
-	public function getTasksAll()
+	public function GetTasksAll()
 	{
-		$data = DB::table('todo-list')
-		->orderByRaw('id')
+		$data = DB::table('todo_list')
+		->where('status',1)
+		->orderByRaw('scheduled')
 		->get();
 
 		// return response()->json($data);
@@ -19,19 +20,19 @@ class ApiController extends Controller
 		]);
 	}
 
-	public function findTask(int $id)
+	public function FindTask(int $id)
 	{
-		$data = DB::table('todo-list')->find($id);
+		$data = DB::table('todo_list')->find($id);
 
 		return response()->json($data);
 	}
 
-	public function addTask(string $task, $scheduled, Request $request)
+	public function AddTask(string $task, $scheduled, Request $request)
 	{
 		date_default_timezone_set('America/Tegucigalpa');
 		$scheduled = (empty($scheduled)) ? date("Y-m-d", strtotime('tomorrow')) : $scheduled ;
 		
-		$query = DB::table('todo-list')->insert([
+		$query = DB::table('todo_list')->insert([
 			'todo_text' => "$task",
 			'done' => 0,
 			'scheduled' => $scheduled,
@@ -50,6 +51,26 @@ class ApiController extends Controller
 				"response_text" => "Lo sentimos, ocurrió un error al intentar subir los datos.",
 				"color" => "danger"
 			);
+		}
+	}
+
+	public function Delete_compl_tasks()
+	{
+		$query = DB::table('todo_list')
+		->where('done', 1)
+		->update(['status' => 0]);
+	}
+
+	public function Completed_task(int $id, int $done)
+	{
+		$query = DB::table('todo_list')
+		->where('id', $id)
+		->update(['done' => $done]);
+
+		if ($query == true) {
+			return "Tarea actualizada exitosamente.";
+		} else {
+			return "Lo sentimos, no se pudo actualizar la tarea.";
 		}
 	}
 }
