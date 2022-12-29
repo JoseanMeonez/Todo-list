@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+	{{-- Tasks' Form Component --}}
 	<form action="{{ route('home') }}" class="card shadow border-0 mb-3">
 		<div class="input-group">
 			<input type="date" class="btn btn-sm btn-outline-primary" id="calendar"/>

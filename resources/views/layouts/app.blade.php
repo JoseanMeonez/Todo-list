@@ -24,6 +24,7 @@
 
 <body>
   <div id="app">
+		{{-- Navbar --}}
     <nav class="navbar navbar-expand-md navbar-dark shadow-sm bg-pixel position-sticky fixed-top">
       <div class="container">
         <a class="navbar-brand fw-bold" href="{{ url('/') }}">
@@ -32,6 +33,7 @@
       </div>
     </nav>
 		
+		{{-- Page content --}}
     <main class="p-3">
 			@yield('content')
     </main>
