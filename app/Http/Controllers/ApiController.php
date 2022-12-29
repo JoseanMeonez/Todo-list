@@ -20,6 +20,16 @@ class ApiController extends Controller
 		]);
 	}
 
+	public function GetJSONTasks(string $sortby = "scheduled")
+	{
+		$data = DB::table('todo_list')
+		->where('status',1)
+		->orderByRaw($sortby)
+		->get();
+
+		return response()->json($data);
+	}
+
 	public function FindTask(int $id)
 	{
 		$data = DB::table('todo_list')->find($id);
@@ -27,7 +37,7 @@ class ApiController extends Controller
 		return response()->json($data);
 	}
 
-	public function AddTask(string $task, $scheduled, Request $request)
+	public function AddTask(string $task, $scheduled)
 	{
 		date_default_timezone_set('America/Tegucigalpa');
 		$scheduled = (empty($scheduled)) ? date("Y-m-d", strtotime('tomorrow')) : $scheduled ;
@@ -84,6 +94,26 @@ class ApiController extends Controller
 		$query = DB::table('todo_list')
 		->where('id', $id)
 		->update(['done' => $done]);
+
+		if ($query == true) {
+			return "Tarea actualizada exitosamente.";
+		} else {
+			return "Lo sentimos, no se pudo actualizar la tarea.";
+		}
+	}
+
+	public function update_task(string $text, $scheduled, int $id)
+	{
+		$scheduled = (empty($scheduled)) ? 
+			DB::table('todo_list')->where('id', $id)->get()
+		: $scheduled;
+
+		$query = DB::table('todo_list')
+		->where('id', $id)
+		->update([
+			'todo_text' => $text,
+			'scheduled' => $scheduled
+		]);
 
 		if ($query == true) {
 			return "Tarea actualizada exitosamente.";
