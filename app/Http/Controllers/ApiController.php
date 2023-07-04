@@ -2,19 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use	App\Models\ApiModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class ApiController extends Controller
 {
+	// Connection to the Api model
+	private $model;
+
+	public function __construct() {
+		// Initialize the model's object
+		$this->model = new ApiModel();
+		return $this->model;
+	}
+
 	// Getting all the task for blade view
 	public function GetTasksAll()
 	{
-		// Extracting table data
-		$data = DB::table('todo_list')
-		->where('status',1)
-		->orderByRaw('scheduled')
-		->get();
+		// Extracting task's table data
+		$data = $this->model->GetAllTasks();
 
 		// Returning data as array
 		return view("tasks", [
@@ -23,13 +30,13 @@ class ApiController extends Controller
 	}
 
 	// This is for extract the data from out the app
-	public function GetJSONTasks(string $sortby = "scheduled")
+	public function GetJSONTasks(string $sort = "scheduled")
 	{
+		// Defining the parameter for sort the data
+		$this->model->sortby = $sort;
+
 		// Extracting table data with a sort parameter
-		$data = DB::table('todo_list')
-		->where('status',1)
-		->orderByRaw($sortby)
-		->get();
+		$data = $this->model->GetJSONTasks();
 
 		// Return a json encoded response
 		return response()->json($data);
