@@ -32,10 +32,9 @@ class ApiController extends Controller
 	// This is for extract the data from out the app
 	public function GetJSONTasks(string $sort = "scheduled")
 	{
-		// Defining the parameter for sort the data
-		$this->model->sortby = $sort;
-
+		// Defining the parameter for sort the data and
 		// Extracting table data with a sort parameter
+		$this->model->sortby = $sort;
 		$data = $this->model->GetJSONTasks();
 
 		// Return a json encoded response
@@ -45,25 +44,24 @@ class ApiController extends Controller
 	// This extract the data from the indicated task
 	public function FindTask(int $id)
 	{
-		$data = DB::table('todo_list')->find($id);
+		// Filling model parameter and executing model method
+		$this->model->taskid = $id;
+		$data = $this->model->FindTask();
 
+		// Return a json encoded response
 		return response()->json($data);
 	}
 
 	// This create a new task on the main table
-	public function AddTask(string $task, $scheduled)
+	public function AddTask(string $task, string $scheduled)
 	{
-		// Setting by default a timezone and using it as default value
+		// Setting by default a timezone and using it as default value and filling $task
 		date_default_timezone_set('America/Tegucigalpa');
-		$scheduled = (empty($scheduled)) ? date("Y-m-d", strtotime('tomorrow')) : $scheduled ;
-		
+		$this->model->scheduled = (empty($scheduled)) ? date("Y-m-d", strtotime('tomorrow')) : $scheduled ;
+		$this->model->task = $task;
+
 		// Inserting the received data on the todo_list table
-		$query = DB::table('todo_list')->insert([
-			'todo_text' => "$task", 		// Task text
-			'done' => 0,								// 1 if the task is marked, 0 if isn't marked
-			'scheduled' => $scheduled,	// Scheduled date
-			'status' => 1								// 1 if isn't deleted, 0 if it's deleted
-		]);
+		$query = $this->model->AddTask();
 
 		// Response data
 		if ($query == true) {
@@ -84,10 +82,8 @@ class ApiController extends Controller
 	// This set the completed task's status as 0
 	public function Delete_compl_tasks()
 	{
-		// Updating using query builder
-		$query = DB::table('todo_list')
-		->where('done', 1)
-		->update(['status' => 0]);
+		// Calling the model method
+		$query = $this->model->Delete_compl_tasks();
 
 		// Response text
 		if ($query == true) {
@@ -100,10 +96,8 @@ class ApiController extends Controller
 	// This set all the task's status as 0
 	public function Delete_all_tasks()
 	{
-		// Updating using query builder
-
-		$query = DB::table('todo_list')
-		->update(['status' => 0]);
+		// Calling model method
+		$query = $this->model->Delete_all_tasks();
 
 		// Response text
 		if ($query == true) {
@@ -114,12 +108,14 @@ class ApiController extends Controller
 	}
 
 	// Update the done field as 1 for the indicated task
-	public function Completed_task(int $id, int $done)
+	public function Completed_task(int $id, bool $done)
 	{
-		// Updating using query builder
-		$query = DB::table('todo_list')
-		->where('id', $id)
-		->update(['done' => $done]);
+		// Setting the parameters needed
+		$this->model->taskid = $id;
+		$this->model->done = $done;
+
+		// Calling model method
+		$query = $this->model->Completed_task();
 
 		// Response text
 		if ($query == true) {
@@ -130,20 +126,22 @@ class ApiController extends Controller
 	}
 
 	// Update the task's fields indicated
-	public function update_task(string $text, $scheduled, int $id)
+	public function Update_task(string $text, $scheduled, int $id)
 	{
+		// Setting the parameters needed
+		$this->model->task = $text;
+		$this->model->taskid = $id;
+
 		// Setting a default value for the scheduled date if is empty
 		$scheduled = (empty($scheduled)) ? 
-			DB::table('todo_list')->where('id', $id)->get()
+			json_decode($this->model->Get_Scheduled_Date())
 		: $scheduled;
 
-		// Updating using query builder
-		$query = DB::table('todo_list')
-		->where('id', $id)
-		->update([
-			'todo_text' => $text,
-			'scheduled' => $scheduled
-		]);
+		// Setting the final parameter
+		$this->model->scheduled = (is_array($scheduled)) ? $scheduled[0]['scheduled'] : $scheduled;
+
+		// Calling model method
+		$query = $this->model->Update_task();
 
 		// Response text
 		if ($query == true) {
