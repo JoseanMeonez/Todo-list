@@ -60,7 +60,7 @@ class ApiController extends Controller
 		$this->model->scheduled = (empty($scheduled)) ? date("Y-m-d", strtotime('tomorrow')) : $scheduled ;
 		$this->model->task = $task;
 
-		// Inserting the received data on the todo_list table
+		// Inserting the received data on the todo-list table
 		$query = $this->model->AddTask();
 
 		// Response data
@@ -133,7 +133,7 @@ class ApiController extends Controller
 		$this->model->taskid = $id;
 
 		// Setting a default value for the scheduled date if is empty
-		$scheduled = (empty($scheduled)) ? 
+		$scheduled = (empty($scheduled)) ?
 			json_decode($this->model->Get_Scheduled_Date())
 		: $scheduled;
 

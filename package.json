@@ -15,6 +15,7 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
+        "@libsql/client": "^0.14.0",
         "bootstrap-icons": "^1.10.3",
         "remove-assets-webpack-plugin": "^1.1.0"
     }
