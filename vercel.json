@@ -8,8 +8,7 @@
   },
   "routes": [
 		{
-			"src": "/public/(.*)",
-      "handle": "filesystem"
+			"src": "/public/(.*)"
 		},
 		{
 			"src": "/(.*)",
