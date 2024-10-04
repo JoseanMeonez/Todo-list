@@ -13,7 +13,7 @@
 				<i class="bi bi-ui-checks fs-5"></i>
 			</button>
 			<button type="button" class="input-group-text btn btn-danger" title="Remove All" id="remove-all">
-				<i class="bi bi-trash-fill fs-5"></i>					
+				<i class="bi bi-trash-fill fs-5"></i>
 			</button>
 		</div>
 	</form>

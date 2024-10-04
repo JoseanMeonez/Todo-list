@@ -16,11 +16,16 @@
 				@endif
 
 				{{-- Check label --}}
-				<label class="form-check-label btn btn-sm btn-outline-primary fs-6" for="{{ $task->id }}"><i class="bi bi-check-lg"></i></label>
+				<label class="form-check-label btn btn-sm btn-outline-primary" for="{{ $task->id }}">
+					<i class="bi bi-check-lg fs-5"></i>
+				</label>
 
 				{{-- Edit Checkbox and label --}}
 				<input type="checkbox" class="form-check-input btn-check" onclick="edit_task('tt-{{$task->id}}', 'sch-{{$task->id}}', {{ $task->id }})" id="e-{{ $task->id }}">
-				<label class="form-check-label btn btn-sm btn-outline-success fs-6" for="e-{{ $task->id }}"><i class="bi bi-pencil-fill fs-6"></i></label>
+
+				<label class="form-check-label btn btn-sm btn-outline-success" for="e-{{ $task->id }}">
+					<i class="bi bi-pencil-fill fs-5"></i>
+				</i></label>
 
 				{{-- Validing each completed task --}}
 				@if ($task->done == 0)
