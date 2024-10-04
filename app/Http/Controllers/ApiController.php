@@ -3,15 +3,14 @@
 namespace App\Http\Controllers;
 
 use	App\Models\ApiModel;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class ApiController extends Controller
 {
 	// Connection to the Api model
 	private $model;
 
-	public function __construct() {
+	public function __construct()
+	{
 		// Initialize the model's object
 		$this->model = new ApiModel();
 		return $this->model;
@@ -57,7 +56,10 @@ class ApiController extends Controller
 	{
 		// Setting by default a timezone and using it as default value and filling $task
 		date_default_timezone_set('America/Tegucigalpa');
-		$this->model->scheduled = (empty($scheduled)) ? date("Y-m-d", strtotime('tomorrow')) : $scheduled ;
+		$this->model->scheduled = (empty($scheduled))
+			? date("Y-m-d", strtotime('tomorrow'))
+			: $scheduled;
+
 		$this->model->task = $task;
 
 		// Inserting the received data on the todo-list table
@@ -133,9 +135,9 @@ class ApiController extends Controller
 		$this->model->taskid = $id;
 
 		// Setting a default value for the scheduled date if is empty
-		$scheduled = (empty($scheduled)) ?
-			json_decode($this->model->Get_Scheduled_Date())
-		: $scheduled;
+		$scheduled = (empty($scheduled))
+			? json_decode($this->model->Get_Scheduled_Date())
+			: $scheduled;
 
 		// Setting the final parameter
 		$this->model->scheduled = (is_array($scheduled)) ? $scheduled[0]['scheduled'] : $scheduled;
