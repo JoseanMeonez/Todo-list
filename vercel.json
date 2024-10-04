@@ -1,5 +1,11 @@
 {
   "version": 2,
+  "functions": [
+    {
+      "src": "public/index.php",
+      "use": "@vercel/php"
+    }
+  ],
   "routes": [
     {
       "handle": "filesystem"
