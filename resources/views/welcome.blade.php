@@ -4,7 +4,7 @@
 	{{-- Tasks' Form Component --}}
 	<form action="{{ route('home') }}" class="card shadow border-0 mb-3">
 		<div class="input-group">
-			<input type="date" class="btn btn-sm btn-outline-primary" id="calendar"/>
+			<input type="date" class="btn btn-sm btn-outline-primary fw-bold" id="calendar"/>
 			<input type="text" class="form-control border-1 bg-white" id="task" placeholder="Write a new Task">
 			<button type="submit" class="input-group-text btn btn-primary" title="Add Task" id="add-todo">
 				<i class="bi bi-plus-lg fs-5"></i>

@@ -36,7 +36,7 @@
 					<input type="text" class="form-control ms-2 task-text text-decoration-line-through text-muted" value="{{ $task->todo_text }}" id="tt-{{$task->id}}" readonly>
 				@endif
 
-				<input type="date" class="btn btn-sm btn-outline-primary text-end" id="sch-{{$task->id}}" value="{{$task->scheduled}}" readonly/>
+				<input type="date" class="btn btn-sm btn-outline-primary text-end fw-bold" id="sch-{{$task->id}}" value="{{$task->scheduled}}" readonly/>
 			</div>
 		</li>
 	@endforeach
