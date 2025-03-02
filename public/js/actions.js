@@ -1,5 +1,5 @@
-let url = "http://127.0.0.1:8000";
-let snd1 = new Audio("https://actions.google.com/sounds/v1/cartoon/cartoon_boing.ogg");  
+let url = "https://pixel-todo.laravel.cloud/api";
+let snd1 = new Audio("https://actions.google.com/sounds/v1/cartoon/cartoon_boing.ogg");
 let snd2 = new Audio("https://actions.google.com/sounds/v1/cartoon/cartoon_cowbell.ogg");
 
 // This function changes de checkbox status as checked or not
