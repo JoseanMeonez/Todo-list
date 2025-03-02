@@ -1,4 +1,4 @@
-let url = "https://pixel-todo.laravel.cloud/api";
+let url = "https://pixel-todo.laravel.cloud";
 let snd1 = new Audio("https://actions.google.com/sounds/v1/cartoon/cartoon_boing.ogg");
 let snd2 = new Audio("https://actions.google.com/sounds/v1/cartoon/cartoon_cowbell.ogg");
 
